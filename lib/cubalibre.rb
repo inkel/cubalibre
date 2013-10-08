@@ -58,8 +58,18 @@ class CubaLIbre
 
   def self._param(name)
     argv = @argv.dup
-    argv << nil if argv.size.odd?
-    Hash[*argv][name]
+    val  = nil
+
+    while !argv.empty?
+      arg = argv.shift
+
+      if arg == name
+        val = argv.shift
+        break
+      end
+    end
+
+    val
   end
 
   def self.param(name)
